@@ -6,8 +6,9 @@
 <title>ডিজিটাল মেম্বারশিপ ভেরিফিকেশন পোর্টাল | জনতার অনলাইন প্রেসক্লাব</title>
 <!-- Tailwind CSS CDN -->
 <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
-<!-- Font Awesome & Google Fonts -->
+<!-- Font Awesome Icons -->
 <link rel="stylesheet" href="[https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css)">
+<!-- Google Fonts: Hind Siliguri -->
 <link href="[https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap](https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap)" rel="stylesheet">
 <script>
 tailwind.config = {
@@ -24,15 +25,6 @@ dark: '#0f172a',
 gold: '#f59e0b',
 accent: '#2563eb'
 }
-},
-keyframes: {
-scan: {
-'0%, 100%': { top: '0%' },
-'50%': { top: '100%' },
-}
-},
-animation: {
-scan: 'scan 2s ease-in-out infinite',
 }
 }
 }
@@ -41,192 +33,198 @@ scan: 'scan 2s ease-in-out infinite',
 <style>
 body {
 font-family: 'Hind Siliguri', sans-serif;
-background: radial-gradient(circle at top left, #1e293b, #0f172a);
+background: #0f172a;
+color: #f8fafc;
 }
 .glass-card {
-background: rgba(30, 41, 59, 0.7);
-backdrop-filter: blur(16px);
--webkit-backdrop-filter: blur(16px);
+background: rgba(30, 41, 59, 0.75);
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
 border: 1px solid rgba(255, 255, 255, 0.1);
 }
 .glass-inner {
 background: rgba(15, 23, 42, 0.6);
 border: 1px solid rgba(255, 255, 255, 0.05);
 }
-.glow-effect {
-box-shadow: 0 0 25px -5px rgba(0, 106, 78, 0.4);
+/* Custom scrollbar for small screens */
+::-webkit-scrollbar {
+width: 6px;
+}
+::-webkit-scrollbar-track {
+background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+background: #334155;
+border-radius: 3px;
 }
 </style>
 </head>
-<body class="text-slate-100 min-h-screen flex flex-col justify-between selection:bg-brand-red selection:text-white">
-<!-- 1. Verification Loading Screen Overlay -->
-<div id="loader" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-slate-950 transition-opacity duration-700">
-<div class="relative flex flex-col items-center p-8 text-center">
-<!-- Logo with Glow -->
+<body class="min-h-screen flex flex-col justify-between antialiased">
+<!-- 1. VERIFICATION LOADING SCREEN -->
+<div id="loader" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-slate-950 p-4 transition-opacity duration-500">
+<div class="flex flex-col items-center text-center max-w-sm w-full">
+<!-- Logo Icon with Soft Pulsing Glow -->
 <div class="relative mb-6">
-<div class="absolute -inset-1 rounded-full bg-gradient-to-r from-brand-green to-emerald-400 blur opacity-75 animate-pulse"></div>
-<div class="relative w-24 h-24 bg-slate-900 rounded-full border-2 border-emerald-500/50 flex items-center justify-center shadow-2xl">
-<i class="fa-solid font-bold text-4xl text-emerald-400 fa-shield-halved"></i>
+<div class="absolute inset-0 rounded-full bg-emerald-500/20 blur-xl animate-pulse"></div>
+<div class="relative w-20 h-20 bg-slate-900 rounded-full border border-emerald-500/40 flex items-center justify-center shadow-xl">
+<i class="fa-solid fa-shield-halved text-3xl text-emerald-400"></i>
 </div>
 </div>
-<!-- Dynamic Animation scanner -->
-<div class="w-48 h-1 bg-slate-800 rounded-full overflow-hidden mb-4 relative">
-<div class="w-full h-full bg-emerald-500 animate-pulse"></div>
-</div>
+<!-- Loader Title -->
 <h2 class="text-xl font-bold text-white tracking-wide">জনতার অনলাইন প্রেসক্লাব</h2>
-<p class="text-emerald-400 text-sm font-medium mt-1 flex items-center gap-2">
-<i class="fa-solid fa-circle-notch animate-spin"></i> Verifying Digital Membership...
-</p>
-<div class="mt-6 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs text-emerald-300">
-<i class="fa-solid font-bold fa-lock text-[10px]"></i> Secure Verification System
+<p class="text-xs text-slate-400 mt-1">ডিজিটাল মেম্বারশিপ প্রসেসিং ব্যবস্থা</p>
+<!-- Progress Bar Animation -->
+<div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden my-6">
+<div class="bg-emerald-500 h-full w-full animate-pulse"></div>
+</div>
+<!-- Status Indicator -->
+<div class="flex items-center gap-2 text-xs text-emerald-400 font-medium">
+<i class="fa-solid fa-spinner animate-spin"></i>
+<span>Verifying Digital Membership...</span>
+</div>
+<div class="mt-8 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-[11px] text-slate-400 flex items-center gap-1.5">
+<i class="fa-solid fa-lock text-emerald-500"></i>
+<span>Secure SSL Verified System</span>
 </div>
 </div>
 </div>
-<!-- MAIN PORTAL CONTENT -->
-<div id="main-content" class="opacity-0 transition-opacity duration-700 flex-grow flex flex-col">
-<!-- Header Section -->
-<header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur-md sticky top-0 z-40">
-<div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+<!-- 2. MAIN PORTAL CONTENT -->
+<div id="main-content" class="hidden opacity-0 transition-opacity duration-500 flex-grow flex flex-col">
+<!-- Top Header Navigation -->
+<header class="border-b border-slate-800 bg-slate-900/90 backdrop-blur sticky top-0 z-40">
+<div class="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
 <div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-lg bg-emerald-600 flex items-center justify-center text-white font-bold shadow-md">
-<i class="fa-solid fa-newspaper text-xl"></i>
+<div class="w-9 h-9 rounded-lg bg-emerald-600 flex items-center justify-center text-white font-bold shadow">
+<i class="fa-solid fa-newspaper text-lg"></i>
 </div>
 <div>
-<h1 class="font-bold text-base md:text-lg leading-tight text-white">জনতার অনলাইন প্রেসক্লাব</h1>
-<p class="text-xs text-slate-400">অফিসিয়াল ডিজিটাল সদস্য পরিচয় যাচাইকরণ</p>
+<h1 class="font-bold text-sm sm:text-base text-white leading-tight">জনতার অনলাইন প্রেসক্লাব</h1>
+<p class="text-[11px] text-slate-400">ডিজিটাল সদস্য পরিচয় যাচাইকরণ পোর্টাল</p>
 </div>
 </div>
-<div class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold">
-<i class="fa-solid fa-shield-check"></i>
-<span>Verified System</span>
-</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-medium">
+<i class="fa-solid fa-circle-check text-[10px]"></i> Verified
+</span>
 </div>
 </header>
 <!-- Main Body Area -->
-<main class="max-w-4xl mx-auto px-4 py-8 w-full flex-grow space-y-8">
-<!-- Hero Banner -->
-<div class="text-center space-y-2">
-<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-sm font-semibold shadow-inner">
-<i class="fa-solid fa-circle-check text-emerald-400"></i> Verification Successful
+<main class="max-w-3xl mx-auto px-4 py-6 w-full flex-grow space-y-6">
+<!-- Status Badge Hero Header -->
+<div class="text-center space-y-2 py-2">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold">
+<i class="fa-solid fa-shield-check"></i> Verification Successful
 </div>
-<h2 class="text-2xl md:text-3xl font-bold text-white">স্মার্ট ডিজিটাল মেম্বারশিপ কার্ড</h2>
-<p class="text-slate-400 text-sm max-w-md mx-auto">সদস্যের তথ্যের নির্ভুলতা ও বৈধতা কেন্দ্রীয় ডাটাবেজ থেকে যাচাই করা হয়েছে।</p>
+<h2 class="text-xl sm:text-2xl font-bold text-white">স্মার্ট ডিজিটাল মেম্বারশিপ প্রোফাইল</h2>
+<p class="text-slate-400 text-xs max-w-sm mx-auto">অফিসিয়াল কেন্দ্রীয় ডাটাবেজ থেকে সদস্যের সকল তথ্য সফলভাবে যাচাই করা হয়েছে।</p>
 </div>
-<!-- Verification Profile Card -->
-<div class="glass-card rounded-2xl p-6 md:p-8 glow-effect relative overflow-hidden">
-<!-- Status Badge Absolute Overlay -->
-<div class="absolute -right-12 top-6 bg-emerald-600 text-white font-bold text-xs uppercase tracking-wider py-1 px-12 rotate-45 shadow-lg flex items-center justify-center gap-1">
-ACTIVE
+<!-- Profile Identity Card -->
+<div class="glass-card rounded-xl p-5 sm:p-6 relative overflow-hidden shadow-2xl">
+<!-- Active Ribbon -->
+<div class="absolute top-0 right-0 bg-emerald-600 text-white text-[10px] font-bold px-4 py-1 rounded-bl-lg tracking-wider uppercase flex items-center gap-1">
+<i class="fa-solid fa-circle text-[8px]"></i> ACTIVE
 </div>
-<div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
-<!-- Left: Profile Photo & Visual Indicators -->
-<div class="flex flex-col items-center space-y-4">
+<div class="flex flex-col sm:flex-row gap-6 items-center sm:items-start pt-2">
+<!-- Member Photo & Verification Tag -->
+<div class="flex flex-col items-center space-y-3 shrink-0">
 <div class="relative">
-<div class="w-36 h-36 md:w-40 md:h-40 rounded-xl overflow-hidden border-2 border-emerald-500/50 shadow-2xl bg-slate-800">
-<img src="[https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400](https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400)" alt="Profile Photo" class="w-full h-full object-cover">
+<div class="w-32 h-32 rounded-lg overflow-hidden border-2 border-emerald-500/40 bg-slate-800 shadow-lg">
+<img src="[https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=300](https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=300)" alt="Member Photo" class="w-full h-full object-cover">
 </div>
-<div class="absolute -bottom-3 -right-3 bg-emerald-500 text-slate-950 p-2.5 rounded-full border-2 border-slate-900 shadow-lg" title="Verified Member">
-<i class="fa-solid fa-check text-base font-black"></i>
-</div>
-</div>
-<!-- Big QR Verified Badge -->
-<div class="w-full glass-inner rounded-lg p-3 text-center border border-emerald-500/20">
-<div class="text-xs text-slate-400 font-medium">VERIFICATION ID</div>
-<div class="text-emerald-400 font-mono font-bold text-sm tracking-wider mt-0.5">JOPC-2026-000125</div>
+<div class="absolute -bottom-2 -right-2 bg-emerald-500 text-slate-950 p-1.5 rounded-full border-2 border-slate-900" title="Authentic Card">
+<i class="fa-solid fa-check text-xs"></i>
 </div>
 </div>
-<!-- Right: Member Details Grid -->
-<div class="flex-1 w-full space-y-6">
-<!-- Name & Designation Header -->
-<div class="border-b border-slate-700/60 pb-4 text-center md:text-left">
-<h3 class="text-2xl md:text-3xl font-bold text-white tracking-wide">মোঃ মারুফ হোসেন</h3>
-<p class="text-emerald-400 font-medium text-sm md:text-base flex items-center justify-center md:justify-start gap-2 mt-1">
-<i class="fa-solid fa-id-badge"></i> গণমাধ্যম কর্মী
+<div class="w-full glass-inner rounded-md p-2 text-center border border-slate-700/50">
+<span class="text-[10px] text-slate-400 block uppercase tracking-wider">VERIFICATION ID</span>
+<span class="text-emerald-400 font-mono font-bold text-xs">JOPC-2026-000125</span>
+</div>
+</div>
+<!-- Member Detail Info Block -->
+<div class="flex-1 w-full space-y-4 text-center sm:text-left">
+<div class="border-b border-slate-700/60 pb-3">
+<h3 class="text-xl sm:text-2xl font-bold text-white">মোঃ মারুফ হোসেন</h3>
+<p class="text-emerald-400 font-medium text-xs sm:text-sm mt-0.5 flex items-center justify-center sm:justify-start gap-1.5">
+<i class="fa-solid fa-id-badge text-emerald-500"></i> গণমাধ্যম কর্মী
 </p>
 </div>
-<!-- Structured Info Grid -->
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-<div class="glass-inner p-3 rounded-lg">
-<span class="text-slate-400 block text-xs">সদস্য ID</span>
+<!-- Data Fields Grid -->
+<div class="grid grid-cols-2 gap-2.5 text-xs">
+<div class="glass-inner p-2.5 rounded-md">
+<span class="text-slate-400 block text-[10px]">সদস্য ID</span>
 <span class="text-white font-semibold font-mono">JOPC-88204</span>
 </div>
-<div class="glass-inner p-3 rounded-lg">
-<span class="text-slate-400 block text-xs">সদস্যের ধরন</span>
+<div class="glass-inner p-2.5 rounded-md">
+<span class="text-slate-400 block text-[10px]">সদস্যের ধরন</span>
 <span class="text-white font-semibold">সাধারণ সদস্য</span>
 </div>
-<div class="glass-inner p-3 rounded-lg">
-<span class="text-slate-400 block text-xs">ইস্যুর তারিখ</span>
+<div class="glass-inner p-2.5 rounded-md">
+<span class="text-slate-400 block text-[10px]">ইস্যুর তারিখ</span>
 <span class="text-white font-semibold">২৫ আগস্ট ২০২৬</span>
 </div>
-<div class="glass-inner p-3 rounded-lg">
-<span class="text-slate-400 block text-xs">মেয়াদ</span>
-<span class="text-amber-400 font-semibold flex items-center gap-1">
-<i class="fa-solid fa-infinity text-xs"></i> আজীবন সদস্য
+<div class="glass-inner p-2.5 rounded-md">
+<span class="text-slate-400 block text-[10px]">মেয়াদ</span>
+<span class="text-amber-400 font-semibold">আজীবন সদস্য</span>
+</div>
+</div>
+<!-- Live Status Notification Banner -->
+<div class="glass-inner p-2.5 rounded-md border-l-2 border-emerald-500 flex items-center justify-between">
+<span class="text-[11px] text-slate-300">স্ট্যাটাস:</span>
+<span class="text-emerald-400 font-bold text-xs flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+VERIFIED & ACTIVE
 </span>
 </div>
 </div>
-<!-- Status Pill Bar -->
-<div class="flex items-center justify-between glass-inner p-3.5 rounded-lg border-l-4 border-emerald-500">
-<div class="flex items-center gap-2">
-<span class="relative flex h-3 w-3">
-<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-<span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
-</span>
-<span class="text-xs text-slate-300">স্ট্যাটাস</span>
-</div>
-<span class="text-emerald-400 font-bold text-sm tracking-wide">✓ VERIFIED & ACTIVE</span>
 </div>
 </div>
-</div>
-</div>
-<!-- Official Notice Block -->
-<div class="glass-card rounded-xl p-5 border-l-4 border-amber-500 bg-amber-500/5">
+<!-- Official Security Notice -->
+<div class="glass-card rounded-lg p-4 border-l-4 border-amber-500 bg-amber-500/5">
 <div class="flex items-start gap-3">
-<i class="fa-solid fa-triangle-exclamation text-amber-500 text-lg mt-0.5"></i>
-<div class="space-y-1 text-xs md:text-sm text-slate-300">
-<h4 class="font-bold text-amber-400">ডিজিটাল নিরাপত্তা সংক্রান্ত অফিশিয়াল নোটিশ:</h4>
+<i class="fa-solid fa-triangle-exclamation text-amber-500 text-base mt-0.5"></i>
+<div class="space-y-1 text-xs text-slate-300">
+<h4 class="font-bold text-amber-400">অফিসিয়াল নিরাপত্তা নোটিশ:</h4>
 <p class="leading-relaxed">
-এই ডিজিটাল কার্ডটি জনতার অনলাইন প্রেসক্লাব কর্তৃক নিবন্ধিত ও অনুমোদিত। যেকোনো ধরনের জালিয়াতি রোধে এতে একটি সুরক্ষিত ইউনিক আইডি কোড সংযুক্ত আছে। প্রেস ক্লাব প্রাঙ্গণ বা যেকোনো অফিশিয়াল কার্যক্রমে এই কার্ডটি আইডি কার্ড হিসেবে গ্রহণযোগ্য।
+এই ডিজিটাল প্রোফাইলটি জনতার অনলাইন প্রেসক্লাব কর্তৃক ইস্যুকৃত ও নিবন্ধিত। কার্ডের তথ্যের সত্যতা নিশ্চিত করতে এতে একটি ইউনিক সিকিউরিটি আইডি রয়েছে। যেকোনো প্রাতিষ্ঠানিক প্রসেসিং-এ এই ডিজিটাল কার্ডটি পরিচয়পত্র হিসেবে বৈধ।
 </p>
 </div>
 </div>
 </div>
-<!-- Official Website Integration Section -->
-<div class="glass-card rounded-2xl p-6 text-center space-y-4 border border-slate-700/80">
-<div class="max-w-lg mx-auto space-y-2">
-<h3 class="text-lg font-bold text-white">জনতার অনলাইন প্রেসক্লাবের অফিশিয়াল পোর্টাল</h3>
-<p class="text-xs text-slate-400">সংগঠনের সকল আপডেট, সর্বশেষ সংবাদ, প্রতিনিধি তালিকা এবং প্রকাশিত নোটিশ দেখতে অফিশিয়াল ওয়েবসাইটে প্রবেশ করুন।</p>
-</div>
+<!-- Website Navigation CTA -->
+<div class="glass-card rounded-xl p-5 text-center space-y-3">
+<h3 class="text-base font-bold text-white">জনতার অনলাইন প্রেসক্লাব অফিশিয়াল ওয়েব পোর্টাল</h3>
+<p class="text-xs text-slate-400 max-w-md mx-auto">প্রেসক্লাবের খবর, কমিটি, প্রতিনিধি তালিকা এবং সাংগঠনিক নোটিশসমূহ দেখতে মূল ওয়েবসাইটে যান।</p>
 <div>
-<a href="[https://janataronlinepressclub.com/](https://janataronlinepressclub.com/)" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-3 px-6 py-3 rounded-xl bg-gradient-to-r from-brand-green to-emerald-600 hover:from-emerald-600 hover:to-brand-green text-white font-bold text-sm shadow-lg hover:shadow-emerald-500/20 transition duration-300 transform hover:-translate-y-0.5">
+<a href="[https://janataronlinepressclub.com/](https://janataronlinepressclub.com/)" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow transition duration-200">
 <i class="fa-solid fa-globe"></i>
 <span>Visit Official Website</span>
-<i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+<i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
 </a>
 </div>
 </div>
 </main>
-<!-- Footer Section -->
-<footer class="border-t border-slate-800 bg-slate-950/80 py-6 text-center text-xs text-slate-500">
-<div class="max-w-4xl mx-auto px-4 space-y-2">
+<!-- Footer -->
+<footer class="border-t border-slate-800 bg-slate-950 py-4 text-center text-xs text-slate-500">
 <p>© 2026 জনতার অনলাইন প্রেসক্লাব। সর্বস্বত্ব সংরক্ষিত।</p>
-<p class="text-slate-600">Digital Verification & Membership Management System v2.0</p>
-</div>
+<p class="text-[10px] text-slate-600 mt-0.5">Digital Membership Verification Portal v2.0</p>
 </footer>
 </div>
-<!-- Automated Script for Loading State Transition -->
+<!-- Script to Handle Loader Display Smoothly -->
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function() {
 const loader = document.getElementById("loader");
 const mainContent = document.getElementById("main-content");
-// Automatic Transition after 2.5 seconds
-setTimeout(() => {
-loader.classList.add("opacity-0");
-setTimeout(() => {
+// Show loader for 2 seconds then smoothly display main content
+setTimeout(function() {
+loader.style.opacity = "0";
+setTimeout(function() {
 loader.style.display = "none";
-mainContent.classList.remove("opacity-0");
-}, 700);
-}, 2500);
+mainContent.classList.remove("hidden");
+// Small delay to trigger CSS fade-in transition
+setTimeout(function() {
+mainContent.style.opacity = "1";
+}, 50);
+}, 500);
+}, 2000);
 });
 </script>
 </body>
