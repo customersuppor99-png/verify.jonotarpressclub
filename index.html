@@ -48,21 +48,6 @@
 
     <!-- Main Container -->
     <main class="flex-grow max-w-3xl w-full mx-auto px-4 py-10">
-        
-        <!-- Video Section (30 Seconds Auto Redirect Container) -->
-        <div class="glass-card rounded-3xl p-4 md:p-6 mb-8 text-center">
-            <h3 class="text-lg font-bold text-slate-800 mb-3">জনতার অনলাইন প্রেসক্লাবের পরিচিতি ভিডিও</h3>
-            <div class="relative w-full aspect-video rounded-2xl overflow-hidden shadow-md bg-black">
-                <!-- এখানে আপনার ভিডিও লিংক বা ফাইল যুক্ত করা হয়েছে। ৩০ সেকেন্ড পর অটো রিডাইরেক্ট হবে। -->
-                <video id="introVideo" class="w-full h-full object-cover" autoplay muted playsinline>
-                    <source src="your-video-file.mp4" type="video/mp4">
-                    আপনার ব্রাউজার ভিডিও ট্যাগ সমর্থন করে না।
-                </video>
-            </div>
-            <p class="text-xs text-slate-500 mt-2">ভিডিওটি শেষ হওয়ার পর (অথবা ৩০ সেকেন্ড পর) স্বয়ংক্রিয়ভাবে লগইন পেজে নিয়ে যাওয়া হবে...</p>
-        </div>
-
-        <!-- Search Card -->
         <div class="glass-card rounded-3xl p-6 md:p-10">
             <div class="text-center mb-8">
                 <div class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full mb-3">নিরাপদ ও দ্রুতগতির সিস্টেম</div>
@@ -405,21 +390,15 @@
             { name: "Md Nur Alam Jiku", district: "Bhola", upazila: "Charfassion", mobile: "01714901049" }
         ];
 
-        let countdownInterval = null;
-
-        // Auto redirect to login page after 30 seconds when page loads (or video plays)
-        window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                window.location.href = "https://janataronlinepressclub.com/login";
-            }, 30000); // 30000 milliseconds = 30 seconds
-        });
+        let searchTimeout = null;
 
         function searchMember() {
             const query = document.getElementById('searchPhone').value.trim();
             const resultContainer = document.getElementById('resultContainer');
 
-            if (countdownInterval) {
-                clearInterval(countdownInterval);
+            // Clear previous timers if any
+            if (searchTimeout) {
+                clearTimeout(searchTimeout);
             }
 
             if (!query) {
@@ -432,8 +411,7 @@
             resultContainer.classList.remove('hidden');
 
             if (member) {
-                let timeLeft = 15; // 15 seconds countdown after search result
-
+                // When valid member found, show details AND the video that will play for 30 seconds
                 resultContainer.innerHTML = `
                     <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-inner animate-fade-in">
                         <h3 class="text-lg font-bold text-blue-900 border-b pb-3 mb-4 flex items-center justify-between">
@@ -446,26 +424,25 @@
                             <div><strong class="text-slate-900">জেলা:</strong> ${member.district}</div>
                             <div><strong class="text-slate-900">উপজেলা:</strong> ${member.upazila}</div>
                         </div>
-                        <div class="bg-blue-50 border-l-4 border-blue-600 p-4 rounded-r-xl text-slate-700 text-sm md:text-base leading-relaxed mb-4">
+                        <div class="bg-blue-50 border-l-4 border-blue-600 p-4 rounded-r-xl text-slate-700 text-sm md:text-base leading-relaxed mb-6">
                             “এই মর্মে প্রত্যয়ন করা যাচ্ছে যে, <strong>${member.name}</strong>, <strong>${member.district}</strong> জেলার <strong>${member.upazila}</strong> উপজেলার একজন সদস্য হিসেবে জনতার অনলাইন প্রেসক্লাবের সংরক্ষিত তথ্যভান্ডারে অন্তর্ভুক্ত রয়েছেন।”
                         </div>
-                        <div class="text-center text-xs text-amber-600 font-medium bg-amber-50 p-3 rounded-xl border border-amber-200">
-                            স্বয়ংক্রিয়ভাবে <span id="timer" class="font-bold text-base text-amber-700">15</span> সেকেন্ড পর লগইন পেজে (janataronlinepressclub.com/login) রিডাইরেক্ট করা হবে...
+
+                        <!-- Video Display Container (Plays for 30 seconds before redirecting to login) -->
+                        <div class="bg-black rounded-2xl overflow-hidden shadow-lg p-2 text-center">
+                            <h4 class="text-white text-sm font-medium mb-2">অনুসন্ধান সফল হয়েছে! ভিডিওটি শেষ হলে লগইন পেজে নেওয়া হবে...</h4>
+                            <video id="resultVideo" class="w-full aspect-video rounded-xl object-cover" autoplay playsinline>
+                                <source src="your-video-file.mp4" type="video/mp4">
+                                আপনার ব্রাউজার ভিডিও ট্যাগ সমর্থন করে না।
+                            </video>
                         </div>
                     </div>
                 `;
 
-                countdownInterval = setInterval(() => {
-                    timeLeft--;
-                    const timerElement = document.getElementById('timer');
-                    if (timerElement) {
-                        timerElement.textContent = timeLeft;
-                    }
-                    if (timeLeft <= 0) {
-                        clearInterval(countdownInterval);
-                        window.location.href = "https://janataronlinepressclub.com/login";
-                    }
-                }, 1000);
+                // Set a 30-second timer: video plays, then redirects to login page
+                searchTimeout = setTimeout(() => {
+                    window.location.href = "https://janataronlinepressclub.com/login";
+                }, 30000); // 30000 ms = 30 seconds
 
             } else {
                 resultContainer.innerHTML = `
