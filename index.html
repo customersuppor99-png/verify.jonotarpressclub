@@ -410,6 +410,8 @@
             resultContainer.classList.remove('hidden');
 
             if (member) {
+                let timeLeft = 15; // 15 seconds countdown
+
                 resultContainer.innerHTML = `
                     <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-inner animate-fade-in">
                         <h3 class="text-lg font-bold text-blue-900 border-b pb-3 mb-4 flex items-center justify-between">
@@ -422,25 +424,26 @@
                             <div><strong class="text-slate-900">জেলা:</strong> ${member.district}</div>
                             <div><strong class="text-slate-900">উপজেলা:</strong> ${member.upazila}</div>
                         </div>
-                        <div class="bg-blue-50 border-l-4 border-blue-600 p-4 rounded-r-xl text-slate-700 text-sm md:text-base leading-relaxed mb-6">
+                        <div class="bg-blue-50 border-l-4 border-blue-600 p-4 rounded-r-xl text-slate-700 text-sm md:text-base leading-relaxed mb-4">
                             “এই মর্মে প্রত্যয়ন করা যাচ্ছে যে, <strong>${member.name}</strong>, <strong>${member.district}</strong> জেলার <strong>${member.upazila}</strong> উপজেলার একজন সদস্য হিসেবে জনতার অনলাইন প্রেসক্লাবের সংরক্ষিত তথ্যভান্ডারে অন্তর্ভুক্ত রয়েছেন।”
                         </div>
-
-                        <!-- Video Container with autoplay, muted and controls as backup -->
-                        <div class="bg-black rounded-2xl overflow-hidden shadow-lg p-2 text-center">
-                            <h4 class="text-white text-sm font-medium mb-2">অনুসন্ধান সফল হয়েছে! ভিডিওটি শেষ হলে লগইন পেজে নেওয়া হবে...</h4>
-                            <video id="resultVideo" class="w-full aspect-video rounded-xl object-cover" autoplay muted playsinline controls>
-                                <source src="your-video-file.mp4" type="video/mp4">
-                                আপনার ব্রাউজার ভিডিও ট্যাগ সমর্থন করে না।
-                            </video>
+                        <div class="text-center text-xs text-amber-600 font-medium bg-amber-50 p-3 rounded-xl border border-amber-200">
+                            স্বয়ংক্রিয়ভাবে <span id="timer" class="font-bold text-base text-amber-700">15</span> সেকেন্ড পর লগইন পেজে (janataronlinepressclub.com/login) রিডাইরেক্ট করা হবে...
                         </div>
                     </div>
                 `;
 
-                // Set a 30-second timer to redirect to login page
-                searchTimeout = setTimeout(() => {
-                    window.location.href = "https://janataronlinepressclub.com/login";
-                }, 30000); // 30000 ms = 30 seconds
+                searchTimeout = setInterval(() => {
+                    timeLeft--;
+                    const timerElement = document.getElementById('timer');
+                    if (timerElement) {
+                        timerElement.textContent = timeLeft;
+                    }
+                    if (timeLeft <= 0) {
+                        clearInterval(searchTimeout);
+                        window.location.href = "https://janataronlinepressclub.com/login";
+                    }
+                }, 1000);
 
             } else {
                 resultContainer.innerHTML = `
