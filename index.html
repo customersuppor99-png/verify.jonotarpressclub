@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>জনতার অনলাইন প্রেসক্লাব - তথ্য অনুসন্ধান পোর্টাল</title>
+    <title>জনতার অনলাইন প্রেসক্লাব - তথ্য অনুসন্ধান ও নোটিশ পোর্টাল</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Hind Siliguri -->
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Hind Siliguri', sans-serif;
@@ -34,13 +34,27 @@
         .animate-fade-in {
             animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-        .pulse-badge {
-            animation: pulseGlow 2s infinite;
+        @keyframes popUpModal {
+            0% { opacity: 0; transform: scale(0.9) translateY(20px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .animate-popup {
+            animation: popUpModal 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        @keyframes bounceSlow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .animate-bounce-slow {
+            animation: bounceSlow 3s ease-in-out infinite;
         }
         @keyframes pulseGlow {
-            0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(37, 99, 235, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(234, 179, 8, 0.6); }
+            70% { box-shadow: 0 0 0 15px rgba(234, 179, 8, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(234, 179, 8, 0); }
+        }
+        .pulse-parcel {
+            animation: pulseGlow 2s infinite;
         }
     </style>
 </head>
@@ -78,7 +92,7 @@
                         class="w-full pl-12 pr-4 py-4 rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-blue-600/15 focus:border-blue-600 text-base transition-all bg-slate-50/50 text-slate-800 placeholder-slate-400 shadow-inner">
                 </div>
                 <button onclick="searchMember()" 
-                    class="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-bold px-8 py-4 rounded-2xl transition-all shadow-lg hover:shadow-blue-500/25 flex items-center justify-center gap-2 transform active:scale-95 pulse-badge">
+                    class="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-bold px-8 py-4 rounded-2xl transition-all shadow-lg hover:shadow-blue-500/25 flex items-center justify-center gap-2 transform active:scale-95">
                     <span>অনুসন্ধান করুন</span>
                 </button>
             </div>
@@ -89,6 +103,83 @@
             </div>
         </div>
     </main>
+
+    <!-- Professional Pop-up Modal Container (Hidden by default) -->
+    <div id="popupModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md hidden">
+        <div class="bg-gradient-to-b from-white via-slate-50 to-blue-50/30 w-full max-w-2xl rounded-3xl shadow-2xl border border-blue-100 overflow-hidden animate-popup relative">
+            
+            <!-- Modal Header Banner -->
+            <div class="bg-gradient-to-r from-amber-500 via-orange-600 to-rose-600 p-6 text-white text-center relative overflow-hidden">
+                <div class="absolute -right-10 -top-10 w-32 h-32 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+                <div class="inline-flex items-center justify-center w-14 h-14 bg-white/20 backdrop-blur-md rounded-2xl mb-3 shadow-inner text-3xl animate-bounce-slow">
+                    🎁
+                </div>
+                <h3 class="text-xl md:text-2xl font-black tracking-wide uppercase drop-shadow">জরুরি নোটিশ ও মূল্যবান পার্সেল উপহার!</h3>
+                <p class="text-xs md:text-sm text-amber-100 font-medium mt-1">জনতার অনলাইন প্রেসক্লাবের বিশেষ ঘোষণা</p>
+            </div>
+
+            <!-- Modal Body Content -->
+            <div class="p-6 md:p-8 space-y-6 max-h-[70vh] overflow-y-auto">
+                
+                <!-- Member info preview inside modal -->
+                <div id="modalMemberInfo" class="bg-blue-900 text-white p-4 rounded-2xl shadow-sm text-sm">
+                    <!-- Dynamic member details -->
+                </div>
+
+                <!-- Parcel alert box -->
+                <div class="bg-amber-50 border-2 border-amber-300/80 rounded-2xl p-5 shadow-sm pulse-parcel">
+                    <div class="flex items-start gap-4">
+                        <div class="text-3xl">📦</div>
+                        <div>
+                            <h4 class="font-extrabold text-amber-900 text-base md:text-lg mb-1">আপনার মূল্যবান পার্সেলটি গ্রহণ করুন!</h4>
+                            <p class="text-slate-700 text-sm leading-relaxed">
+                                আপনার জন্য বিশেষভাবে প্রস্তুতকৃত সম্মানিত সংবাদিক উপকরণ ও বিশেষ উপহার (শার্ট/টিশার্ট সহ অন্যান্য সামগ্রী) সম্বলিত পার্সেলটি এখনো গ্রহণ করা হয়নি। দয়া করে আপনার কুরিয়ার থেকে দ্রুত পার্সেলটি সংগ্রহ করে নিন।
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New System Features Showcase -->
+                <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm space-y-3">
+                    <h4 class="font-bold text-slate-900 text-sm md:text-base flex items-center gap-2">
+                        <span class="text-indigo-600">🚀</span> নতুন ও আপডেটকৃত পোর্টালে যা থাকছে:
+                    </h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs md:text-sm text-slate-600">
+                        <div class="flex items-center gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+                            <span class="text-emerald-600 font-bold">✓</span> সরাসরি সংবাদ আপলোড সিস্টেম
+                        </div>
+                        <div class="flex items-center gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+                            <span class="text-emerald-600 font-bold">✓</span> আধুনিক ড্যাশবোর্ড ও প্রোফাইল
+                        </div>
+                        <div class="flex items-center gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+                            <span class="text-emerald-600 font-bold">✓</span> সম্পূর্ণ স্বচ্ছ ও জবাবদিহিতা
+                        </div>
+                        <div class="flex items-center gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+                            <span class="text-emerald-600 font-bold">✓</span> ২৪/৭ ২৪ ঘণ্টা আপডেট সেবা
+                        </div>
+                    </div>
+                    <p class="text-xs text-indigo-900 font-bold mt-2 pt-2 border-t border-slate-100">
+                        ✨ আমরা ওয়াদা করছি সকল কার্যক্রম পরিচালিত হবে শতভাগ স্বচ্ছতার সাথে।
+                    </p>
+                </div>
+
+                <!-- Timer & Action Button -->
+                <div class="space-y-3 text-center pt-2">
+                    <div class="text-xs md:text-sm text-amber-800 font-semibold bg-amber-50 p-3 rounded-xl border border-amber-200 flex items-center justify-center gap-2">
+                        <svg class="w-4 h-4 text-amber-600 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
+                        স্বয়ংক্রিয়ভাবে <span id="modalTimer" class="font-bold text-base text-amber-900">15</span> সেকেন্ড পর লগইন পেজে নিয়ে যাওয়া হচ্ছে...
+                    </div>
+
+                    <a href="https://janataronlinepressclub.com/login" 
+                       class="w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-extrabold py-4 px-6 rounded-2xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 text-base">
+                        <span>অ্যাকাউন্টে লগইন করুন ও সংবাদ আপলোড করুন</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="bg-slate-900/80 backdrop-blur-md border-t border-slate-800 py-6 text-center text-xs md:text-sm text-slate-400 relative z-10">
@@ -412,14 +503,15 @@
         ];
 
         let searchTimeout = null;
+        let modalInterval = null;
 
         function searchMember() {
             const query = document.getElementById('searchPhone').value.trim();
             const resultContainer = document.getElementById('resultContainer');
+            const popupModal = document.getElementById('popupModal');
 
-            if (searchTimeout) {
-                clearTimeout(searchTimeout);
-            }
+            if (searchTimeout) clearTimeout(searchTimeout);
+            if (modalInterval) clearInterval(modalInterval);
 
             if (!query) {
                 resultContainer.classList.remove('hidden');
@@ -434,8 +526,7 @@
             resultContainer.classList.remove('hidden');
 
             if (member) {
-                let timeLeft = 15; // 15 seconds countdown
-
+                // Show verified result briefly on the page
                 resultContainer.innerHTML = `
                     <div class="bg-gradient-to-br from-slate-50 to-blue-50/50 border border-slate-200/80 rounded-2xl p-6 md:p-8 shadow-lg animate-fade-in">
                         <div class="flex items-center justify-between border-b border-slate-200 pb-4 mb-6">
@@ -453,36 +544,31 @@
                             <div class="flex items-center gap-2"><strong class="text-slate-900 w-24">উপজেলা:</strong> <span class="text-slate-800 font-semibold">${member.upazila}</span></div>
                         </div>
 
-                        <div class="bg-gradient-to-r from-blue-900 to-indigo-900 text-blue-50 p-5 rounded-2xl text-sm md:text-base leading-relaxed mb-6 shadow-md border border-blue-800">
+                        <div class="bg-gradient-to-r from-blue-900 to-indigo-900 text-blue-50 p-5 rounded-2xl text-sm md:text-base leading-relaxed mb-4 shadow-md border border-blue-800">
                             <p class="font-medium">“এই মর্মে প্রত্যয়ন করা যাচ্ছে যে, <strong class="text-white underline decoration-blue-400">${member.name}</strong>, <strong class="text-white">${member.district}</strong> জেলার <strong class="text-white">${member.upazila}</strong> উপজেলার একজন সম্মানিত সদস্য হিসেবে জনতার অনলাইন প্রেসক্লাবের সংরক্ষিত তথ্যভান্ডারে অন্তর্ভুক্ত রয়েছেন।”</p>
-                        </div>
-
-                        <!-- Professional Notice Box -->
-                        <div class="bg-white border-l-4 border-indigo-600 rounded-r-2xl p-5 mb-6 text-slate-700 text-sm md:text-base leading-relaxed shadow-sm border-t border-r border-b border-slate-200">
-                            <p class="font-bold text-indigo-900 mb-2 flex items-center gap-2">
-                                <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                জরুরি ঘোষণা ও নোটিশ:
-                            </p>
-                            <p class="mb-2 text-slate-600">অনুগ্রহ করে আপনার পার্সেলটি এখনো গ্রহণ করা হয়নি—দয়া করে দ্রুত পার্সেলটি গ্রহণ করে নিন।</p>
-                            <p class="mb-2 text-slate-600">আমাদের নতুন ওয়েবসাইটে আরও অসংখ্য আধুনিক প্রযুক্তির কাজ চলমান রয়েছে। বর্তমানে সংবাদ আপলোডের জন্য ওয়েবসাইটটি উন্মুক্ত করা হয়েছে। আপনার অ্যাকাউন্টে লগইন করে সংবাদ আপলোড করুন এবং নিয়মিত কার্যক্রম পরিচালনা করুন।</p>
-                            <p class="font-bold text-indigo-900 mt-3 pt-2 border-t border-slate-100">আমরা ওয়াদা করছি সকল কিছু পরিচালিত হবে স্বচ্ছতার সাথে।</p>
-                        </div>
-
-                        <div class="text-center text-xs md:text-sm text-amber-800 font-semibold bg-amber-50 p-4 rounded-2xl border border-amber-200/80 shadow-sm flex items-center justify-center gap-2">
-                            <svg class="w-5 h-5 text-amber-600 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
-                            স্বয়ংক্রিয়ভাবে <span id="timer" class="font-bold text-base text-amber-900 px-1">15</span> সেকেন্ড পর লগইন পেজে (janataronlinepressclub.com/login) রিডাইরেক্ট করা হচ্ছে...
                         </div>
                     </div>
                 `;
 
-                searchTimeout = setInterval(() => {
+                // Populate modal with member info
+                document.getElementById('modalMemberInfo').innerHTML = `
+                    <p class="font-bold text-amber-300 mb-1">যাচাইকৃত সদস্য:</p>
+                    <p>নাম: <span class="font-semibold text-white">${member.name}</span> | জেলা: <span class="font-semibold text-white">${member.district}</span> (${member.upazila})</p>
+                `;
+
+                // Open the Pop-up Modal smoothly
+                popupModal.classList.remove('hidden');
+
+                // 15 seconds countdown for redirection inside modal
+                let timeLeft = 15;
+                modalInterval = setInterval(() => {
                     timeLeft--;
-                    const timerElement = document.getElementById('timer');
-                    if (timerElement) {
-                        timerElement.textContent = timeLeft;
+                    const modalTimer = document.getElementById('modalTimer');
+                    if (modalTimer) {
+                        modalTimer.textContent = timeLeft;
                     }
                     if (timeLeft <= 0) {
-                        clearInterval(searchTimeout);
+                        clearInterval(modalInterval);
                         window.location.href = "https://janataronlinepressclub.com/login";
                     }
                 }, 1000);
