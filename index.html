@@ -11,7 +11,7 @@
     <style>
         body {
             font-family: 'Hind Siliguri', sans-serif;
-            background: radial-gradient(circle at top left, #1e3a8a, #0f172a, #020617);
+            background: radial-gradient(circle at top left, #312e81, #0f172a, #020617);
             color: #1e293b;
             min-height: 100vh;
             display: flex;
@@ -22,10 +22,10 @@
             background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
         }
         .header-gradient {
-            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 50%, #0f172a 100%);
+            background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 50%, #0f172a 100%);
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(15px); }
@@ -42,9 +42,9 @@
             animation: popUpModal 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
         @keyframes pulseGlow {
-            0% { box-shadow: 0 0 0 0 rgba(234, 179, 8, 0.6); }
-            70% { box-shadow: 0 0 0 15px rgba(234, 179, 8, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(234, 179, 8, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(245, 158, 11, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
         }
         .pulse-parcel {
             animation: pulseGlow 2s infinite;
@@ -54,12 +54,12 @@
 <body>
 
     <!-- Header Section -->
-    <header class="header-gradient text-white py-10 shadow-2xl border-b border-blue-500/30 relative overflow-hidden">
+    <header class="header-gradient text-white py-10 shadow-2xl border-b border-indigo-500/30 relative overflow-hidden">
         <div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
         <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
-            <span class="inline-block bg-blue-500/20 text-blue-200 border border-blue-400/30 text-xs font-semibold px-4 py-1.5 rounded-full mb-3 tracking-wide uppercase">অফিসিয়াল মেম্বার ভেরিফিকেশন পোর্টাল</span>
-            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-2 text-white drop-shadow-sm">জনতার অনলাইন প্রেসক্লাব</h1>
-            <p class="text-sm md:text-base text-blue-100 font-medium max-w-xl mx-auto opacity-90">সাংবাদিক ও গণমাধ্যম কর্মীদের তথ্য অনুসন্ধান ও অনলাইন যাচাইকরণ ব্যবস্থা</p>
+            <span class="inline-block bg-white/10 text-indigo-200 border border-indigo-300/30 text-xs font-semibold px-4 py-1.5 rounded-full mb-3 tracking-wide uppercase shadow-sm">অফিসিয়াল মেম্বার ভেরিফিকেশন পোর্টাল</span>
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-2 text-white drop-shadow-md">জনতার অনলাইন প্রেসক্লাব</h1>
+            <p class="text-sm md:text-base text-indigo-100 font-medium max-w-xl mx-auto opacity-90">সদস্যের মোবাইল নম্বর দিয়ে রিয়েল-টাইম তথ্য অনুসন্ধান ও যাচাইকরণ ব্যবস্থা</p>
         </div>
     </header>
 
@@ -67,26 +67,26 @@
     <main class="flex-grow max-w-3xl w-full mx-auto px-4 py-12 relative z-10">
         <div class="glass-card rounded-3xl p-6 md:p-10 transition-all duration-300">
             <div class="text-center mb-8">
-                <div class="inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-semibold px-3.5 py-1.5 rounded-full mb-3 shadow-sm">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-                    রিয়েল-টাইম ডাটাবেজ ভেরিফিকেশন
+                <div class="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-50 to-blue-50 text-indigo-700 border border-indigo-200 text-xs font-bold px-4 py-2 rounded-full mb-3 shadow-sm">
+                    <span class="w-2.5 h-2.5 rounded-full bg-indigo-600 animate-ping"></span>
+                    নিরাপদ ও এনক্রিপ্টেড ডাটাবেজ সিস্টেম
                 </div>
-                <h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">সদস্য তথ্য অনুসন্ধান করুন</h2>
-                <p class="text-slate-500 text-sm md:text-base mt-2">সদস্যের নাম, মোবাইল নম্বর অথবা সদস্য আইডি দিয়ে অনুসন্ধান করুন</p>
+                <h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">সদস্যের মোবাইল দিয়ে অনুসন্ধান করুন</h2>
+                <p class="text-slate-500 text-sm md:text-base mt-2">সদস্যের মোবাইল নম্বরটি নিচে প্রবেশ করিয়ে সত্যতা যাচাই করুন</p>
             </div>
 
             <!-- Search Form -->
             <div class="flex flex-col sm:flex-row gap-3">
                 <div class="relative flex-grow">
-                    <span class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    <span class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-indigo-500">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
                     </span>
-                    <input type="text" id="searchInput" placeholder="নাম, মোবাইল নম্বর বা আইডি লিখুন..." 
-                        class="w-full pl-12 pr-4 py-4 rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-blue-600/15 focus:border-blue-600 text-base transition-all bg-slate-50/50 text-slate-800 placeholder-slate-400 shadow-inner">
+                    <input type="tel" id="searchInput" placeholder="মোবাইল নম্বর লিখুন (যেমন: 017XXXXXXXX)" 
+                        class="w-full pl-12 pr-4 py-4 rounded-2xl border-2 border-indigo-100 focus:outline-none focus:ring-4 focus:ring-indigo-600/20 focus:border-indigo-600 text-base transition-all bg-slate-50/50 text-slate-900 font-medium placeholder-slate-400 shadow-inner">
                 </div>
                 <button onclick="searchMember()" 
-                    class="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-bold px-8 py-4 rounded-2xl transition-all shadow-lg hover:shadow-blue-500/25 flex items-center justify-center gap-2 transform active:scale-95">
-                    <span>অনুসন্ধান</span>
+                    class="bg-gradient-to-r from-indigo-600 via-blue-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white font-extrabold px-8 py-4 rounded-2xl transition-all shadow-xl hover:shadow-indigo-500/30 flex items-center justify-center gap-2 transform active:scale-95">
+                    <span>যাচাই করুন</span>
                 </button>
             </div>
 
@@ -97,65 +97,70 @@
         </div>
     </main>
 
-    <!-- Professional Pop-up Modal Container (Hidden by default) -->
-    <div id="popupModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md hidden">
-        <div class="bg-gradient-to-b from-white via-slate-50 to-blue-50/30 w-full max-w-2xl rounded-3xl shadow-2xl border border-blue-100 overflow-hidden animate-popup relative">
+    <!-- Professional Colorful Pop-up Modal Container -->
+    <div id="popupModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md hidden">
+        <div class="bg-gradient-to-b from-white via-indigo-50/40 to-blue-50/60 w-full max-w-2xl rounded-3xl shadow-2xl border-2 border-indigo-200/80 overflow-hidden animate-popup relative">
             
-            <!-- Success Banner -->
-            <div class="bg-gradient-to-r from-emerald-600 to-teal-700 p-5 text-white text-center relative">
-                <h3 class="text-xl md:text-2xl font-black tracking-wide">অভিনন্দন!</h3>
-                <p class="text-xs md:text-sm font-medium text-emerald-100 mt-0.5">উক্ত ব্যক্তি জনতার অনলাইন প্রেসক্লাবের একজন সদস্য।</p>
+            <!-- Success Colorful Banner -->
+            <div class="bg-gradient-to-r from-indigo-600 via-blue-600 to-purple-600 p-6 text-white text-center relative shadow-md">
+                <div class="absolute -right-10 -top-10 w-32 h-32 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
+                <div class="inline-flex items-center justify-center w-12 h-12 bg-white/20 backdrop-blur-md rounded-2xl mb-2 text-2xl shadow-inner">🎉</div>
+                <h3 class="text-2xl md:text-3xl font-black tracking-wide drop-shadow">অভিনন্দন!</h3>
+                <p class="text-xs md:text-sm font-semibold text-indigo-100 mt-1">উক্ত ব্যক্তি জনতার অনলাইন প্রেসক্লাবের একজন সদস্য।</p>
             </div>
 
             <!-- Modal Body Content -->
             <div class="p-6 md:p-8 space-y-5 max-h-[72vh] overflow-y-auto text-slate-700 text-sm md:text-base">
                 
                 <!-- Member Details Card -->
-                <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm space-y-3">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div class="flex items-center gap-2"><strong class="text-slate-900 w-28">সদস্যের নাম:</strong> <span id="modalName" class="text-slate-900 font-bold"></span></div>
-                        <div class="flex items-center gap-2"><strong class="text-slate-900 w-28">সদস্য আইডি:</strong> <span id="modalId" class="text-blue-700 font-mono font-bold bg-blue-50 px-2 py-0.5 rounded"></span></div>
-                        <div class="flex items-center gap-2"><strong class="text-slate-900 w-28">জেলা:</strong> <span id="modalDistrict" class="text-slate-800 font-semibold"></span></div>
-                        <div class="flex items-center gap-2"><strong class="text-slate-900 w-28">উপজেলা:</strong> <span id="modalUpazila" class="text-slate-800 font-semibold"></span></div>
-                        <div class="flex items-center gap-2 sm:col-span-2"><strong class="text-slate-900 w-28">সদস্যের অবস্থা:</strong> <span class="text-emerald-700 font-bold bg-emerald-50 px-3 py-1 rounded-full text-xs">সক্রিয় সদস্য</span></div>
+                <div class="bg-white p-6 rounded-2xl border-2 border-indigo-100 shadow-sm space-y-3 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-gradient-to-l from-indigo-600 to-blue-600 text-white text-[10px] font-extrabold px-4 py-1 rounded-bl-xl uppercase tracking-wider shadow-sm">ভেরিফাইড প্রোফাইল</div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                        <div class="flex items-center gap-2"><strong class="text-slate-900 w-28">সদস্যের নাম:</strong> <span id="modalName" class="text-indigo-900 font-extrabold text-base"></span></div>
+                        <div class="flex items-center gap-2"><strong class="text-slate-900 w-28">সদস্য আইডি:</strong> <span id="modalId" class="text-indigo-700 font-mono font-bold bg-indigo-50 px-2.5 py-0.5 rounded border border-indigo-200"></span></div>
+                        <div class="flex items-center gap-2"><strong class="text-slate-900 w-28">জেলা:</strong> <span id="modalDistrict" class="text-slate-800 font-bold"></span></div>
+                        <div class="flex items-center gap-2"><strong class="text-slate-900 w-28">উপজেলা:</strong> <span id="modalUpazila" class="text-slate-800 font-bold"></span></div>
+                        <div class="flex items-center gap-2 sm:col-span-2 pt-1"><strong class="text-slate-900 w-28">সদস্যের অবস্থা:</strong> <span class="text-amber-800 font-black bg-gradient-to-r from-amber-200 to-yellow-300 px-3.5 py-1 rounded-full text-xs shadow-sm border border-amber-300">⭐ আজীবন সদস্য</span></div>
                     </div>
                 </div>
 
                 <!-- Official Certification Box -->
-                <div class="bg-blue-900 text-blue-50 p-5 rounded-2xl leading-relaxed shadow-md border border-blue-800 space-y-2 text-xs md:text-sm">
-                    <h4 class="font-extrabold text-amber-300 text-sm uppercase tracking-wide border-b border-blue-800 pb-1.5">অফিসিয়াল প্রত্যয়ন</h4>
-                    <p class="text-slate-200">উপরোক্ত তথ্য জনতার অনলাইন প্রেসক্লাবের সংরক্ষিত সদস্য তথ্যের ভিত্তিতে যাচাই করা হয়েছে। প্রদর্শিত তথ্য অনুযায়ী উক্ত ব্যক্তি জনতার অনলাইন প্রেসক্লাবের একজন সদস্য।</p>
-                    <p class="text-amber-200 font-medium pt-1"><strong>অনুরোধ:</strong> উক্ত সদস্যকে তাঁর পেশাগত কার্যক্রম পরিচালনার ক্ষেত্রে প্রয়োজন অনুযায়ী আইনানুগ ও প্রশাসনিক সহযোগিতা প্রদানের জন্য সংশ্লিষ্ট সকলের প্রতি অনুরোধ করা হলো।</p>
+                <div class="bg-gradient-to-br from-indigo-900 to-slate-900 text-indigo-50 p-6 rounded-2xl leading-relaxed shadow-lg border border-indigo-800 space-y-3 text-xs md:text-sm">
+                    <h4 class="font-black text-amber-300 text-sm md:text-base uppercase tracking-wider border-b border-indigo-800 pb-2 flex items-center gap-2">
+                        <span>📜</span> অফিসিয়াল প্রত্যয়ন
+                    </h4>
+                    <p class="text-slate-200 leading-relaxed">উপরোক্ত তথ্য জনতার অনলাইন প্রেসক্লাবের সংরক্ষিত সদস্য তথ্যের ভিত্তিতে যাচাই করা হয়েছে। প্রদর্শিত তথ্য অনুযায়ী উক্ত ব্যক্তি জনতার অনলাইন প্রেসক্লাবের একজন সদস্য।</p>
+                    <p class="text-amber-200 font-medium pt-1 bg-white/5 p-3 rounded-xl border border-white/10"><strong>অনুরোধ:</strong> উক্ত সদস্যকে তাঁর পেশাগত কার্যক্রম পরিচালনার ক্ষেত্রে প্রয়োজন অনুযায়ী আইনানুগ ও প্রশাসনিক সহযোগিতা প্রদানের জন্য সংশ্লিষ্ট সকলের প্রতি অনুরোধ করা হলো।</p>
                 </div>
 
                 <!-- Parcel Notice Box -->
-                <div class="bg-amber-50 border-2 border-amber-300/80 rounded-2xl p-4 shadow-sm pulse-parcel flex items-start gap-3">
-                    <div class="text-2xl">📦</div>
+                <div class="bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-300/90 rounded-2xl p-5 shadow-md pulse-parcel flex items-start gap-4">
+                    <div class="text-3xl bg-amber-100 p-2 rounded-xl shadow-inner">📦</div>
                     <div>
-                        <h4 class="font-extrabold text-amber-900 text-sm md:text-base mb-1">মূল্যবান পার্সেল গ্রহণ করুন</h4>
-                        <p class="text-slate-700 text-xs md:text-sm leading-relaxed">
-                            অনুগ্রহ করে আপনার মূল্যবান পার্সেলটি গ্রহণ করুন। আমাদের তথ্য অনুযায়ী পার্সেলটি এখনো গ্রহণ করা হয়নি। দয়া করে দ্রুত পার্সেলটি গ্রহণ করুন (টিশার্ট ও অন্যান্য সামগ্রী)।
+                        <h4 class="font-black text-amber-900 text-base md:text-lg mb-1">মূল্যবান পার্সেল গ্রহণ করুন</h4>
+                        <p class="text-slate-700 text-xs md:text-sm leading-relaxed font-medium">
+                            অনুগ্রহ করে আপনার মূল্যবান পার্সেলটি গ্রহণ করুন। আমাদের তথ্য অনুযায়ী পার্সেলটি এখনো গ্রহণ করা হয়নি। দয়া করে দ্রুত পার্সেলটি গ্রহণ করুন (টিশার্ট ও অন্যান্য মূল্যবান সামগ্রী)।
                         </p>
                     </div>
                 </div>
 
                 <!-- Final Greetings -->
-                <div class="bg-indigo-50 border border-indigo-100 p-3 rounded-2xl text-center">
-                    <p class="font-bold text-indigo-900 text-sm">অভিনন্দন!</p>
-                    <p class="text-xs text-slate-600">জনতার অনলাইন প্রেসক্লাবের পক্ষ থেকে শুভেচ্ছা ও অভিনন্দন।</p>
+                <div class="bg-indigo-100/70 border border-indigo-200 p-4 rounded-2xl text-center shadow-inner">
+                    <p class="font-black text-indigo-900 text-base">অভিনন্দন!</p>
+                    <p class="text-xs md:text-sm text-indigo-800 font-medium mt-0.5">জনতার অনলাইন প্রেসক্লাবের পক্ষ থেকে শুভেচ্ছা ও অভিনন্দন।</p>
                 </div>
 
                 <!-- Timer & Redirect Button -->
-                <div class="space-y-3 text-center pt-1">
-                    <div class="text-xs text-amber-800 font-semibold bg-amber-50 p-3 rounded-xl border border-amber-200 flex items-center justify-center gap-2">
+                <div class="space-y-3 text-center pt-2">
+                    <div class="text-xs text-amber-900 font-bold bg-amber-100/80 p-3.5 rounded-xl border border-amber-300 flex items-center justify-center gap-2 shadow-sm">
                         <svg class="w-4 h-4 text-amber-600 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
-                        স্বয়ংক্রিয়ভাবে <span id="modalTimer" class="font-bold text-base text-amber-900">35</span> সেকেন্ড পর লগইন পেজে নিয়ে যাওয়া হচ্ছে...
+                        স্বয়ংক্রিয়ভাবে <span id="modalTimer" class="font-black text-base text-amber-950 px-1">35</span> সেকেন্ড পর লগইন পেজে নিয়ে যাওয়া হচ্ছে...
                     </div>
 
                     <a href="https://janataronlinepressclub.com/login" 
-                       class="w-full bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 text-sm md:text-base">
-                        <span>লগইন করুন</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                       class="w-full bg-gradient-to-r from-indigo-600 via-blue-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white font-extrabold py-4 px-6 rounded-2xl shadow-xl hover:shadow-indigo-500/30 transition-all flex items-center justify-center gap-2 text-sm md:text-base">
+                        <span>অ্যাকাউন্টে লগইন করুন</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </a>
                 </div>
 
@@ -164,10 +169,10 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-slate-900/80 backdrop-blur-md border-t border-slate-800 py-6 text-center text-xs md:text-sm text-slate-400 relative z-10">
+    <footer class="bg-slate-900/90 backdrop-blur-md border-t border-slate-800 py-6 text-center text-xs md:text-sm text-slate-400 relative z-10">
         <div class="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
             <p>&copy; 2026 জনতার অনলাইন প্রেসক্লাব। সর্বস্বত্ব সংরক্ষিত।</p>
-            <p>অফিসিয়াল লগইন: <a href="https://janataronlinepressclub.com/login" target="_blank" class="text-blue-400 hover:text-blue-300 underline font-medium transition-colors">janataronlinepressclub.com/login</a></p>
+            <p>অফিসিয়াল লগইন: <a href="https://janataronlinepressclub.com/login" target="_blank" class="text-indigo-400 hover:text-indigo-300 underline font-medium transition-colors">janataronlinepressclub.com/login</a></p>
         </div>
     </footer>
 
@@ -489,16 +494,16 @@
 
         function speakText(text) {
             if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel(); // Stop any previous speech
+                window.speechSynthesis.cancel();
                 const utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = 'bn-BD'; // Bengali language
-                utterance.rate = 0.95; // Natural speaking speed
+                utterance.lang = 'bn-BD';
+                utterance.rate = 0.95;
                 window.speechSynthesis.speak(utterance);
             }
         }
 
         function searchMember() {
-            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            const query = document.getElementById('searchInput').value.trim();
             const resultContainer = document.getElementById('resultContainer');
             const popupModal = document.getElementById('popupModal');
 
@@ -508,16 +513,13 @@
                 resultContainer.classList.remove('hidden');
                 resultContainer.innerHTML = `
                     <div class="p-4 bg-amber-50 border border-amber-200 text-amber-800 rounded-2xl text-center font-medium animate-fade-in shadow-sm">
-                        ⚠️ অনুগ্রহ করে অনুসন্ধান বক্সে সদস্যের নাম, মোবাইল নম্বর অথবা আইডি লিখুন।
+                        ⚠️ অনুগ্রহ করে অনুসন্ধান বক্সে সদস্যের সঠিক মোবাইল নম্বরটি লিখুন।
                     </div>`;
                 return;
             }
 
-            const member = membersData.find(m => 
-                m.name.toLowerCase().includes(query) || 
-                m.mobile.toLowerCase().includes(query) || 
-                m.id.toLowerCase().includes(query)
-            );
+            // Strictly search by mobile number as requested
+            const member = membersData.find(m => m.mobile === query);
 
             resultContainer.classList.remove('hidden');
 
@@ -532,7 +534,7 @@
                 popupModal.classList.remove('hidden');
 
                 // Text to speech announcement in Bengali
-                const speechString = `অভিনন্দন! উক্ত ব্যক্তি জনতার অনলাইন প্রেসক্লাবের একজন সদস্য। নাম ${member.name}, জেলা ${member.district}, উপজেলা ${member.upazila}, সদস্য আইডি ${member.id}। অনুগ্রহ করে আপনার মূল্যবান পার্সেলটি দ্রুত গ্রহণ করুন।`;
+                const speechString = `অভিনন্দন! উক্ত ব্যক্তি জনতার অনলাইন প্রেসক্লাবের একজন আজীবন সদস্য। নাম ${member.name}, জেলা ${member.district}, উপজেলা ${member.upazila}, সদস্য আইডি ${member.id}। অনুগ্রহ করে আপনার মূল্যবান পার্সেলটি দ্রুত গ্রহণ করুন।`;
                 speakText(speechString);
 
                 // 35 seconds countdown timer
@@ -555,7 +557,7 @@
                     <div class="p-8 bg-amber-50 border border-amber-200 text-amber-900 rounded-3xl text-center animate-fade-in shadow-sm space-y-2">
                         <div class="text-3xl mb-1">ℹ️</div>
                         <p class="font-bold text-base">এই তথ্যটি আপডেট এর কাজ চলছে, পার্সেল গ্রহণ করলে আপডেট হবে।</p>
-                        <p class="text-xs text-amber-700">দয়া করে সঠিক তথ্য দিয়ে পুনরায় চেষ্টা করুন অথবা কর্তৃপক্ষের সাথে যোগাযোগ করুন।</p>
+                        <p class="text-xs text-amber-700">দয়া করে আপনার সঠিক মোবাইল নম্বরটি দিয়ে পুনরায় চেষ্টা করুন।</p>
                     </div>
                 `;
             }
