@@ -34,9 +34,16 @@
         .animate-fade-in {
             animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
+        @keyframes popUpModal {
+            0% { opacity: 0; transform: scale(0.9) translateY(20px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .animate-popup {
+            animation: popUpModal 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
         @keyframes pulseGlow {
-            0% { box-shadow: 0 0 0 0 rgba(234, 179, 8, 0.5); }
-            70% { box-shadow: 0 0 0 12px rgba(234, 179, 8, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(234, 179, 8, 0.6); }
+            70% { box-shadow: 0 0 0 15px rgba(234, 179, 8, 0); }
             100% { box-shadow: 0 0 0 0 rgba(234, 179, 8, 0); }
         }
         .pulse-parcel {
@@ -90,6 +97,72 @@
         </div>
     </main>
 
+    <!-- Professional Pop-up Modal Container (Hidden by default) -->
+    <div id="popupModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md hidden">
+        <div class="bg-gradient-to-b from-white via-slate-50 to-blue-50/30 w-full max-w-2xl rounded-3xl shadow-2xl border border-blue-100 overflow-hidden animate-popup relative">
+            
+            <!-- Success Banner -->
+            <div class="bg-gradient-to-r from-emerald-600 to-teal-700 p-5 text-white text-center relative">
+                <h3 class="text-xl md:text-2xl font-black tracking-wide">অভিনন্দন!</h3>
+                <p class="text-xs md:text-sm font-medium text-emerald-100 mt-0.5">উক্ত ব্যক্তি জনতার অনলাইন প্রেসক্লাবের একজন সদস্য।</p>
+            </div>
+
+            <!-- Modal Body Content -->
+            <div class="p-6 md:p-8 space-y-5 max-h-[72vh] overflow-y-auto text-slate-700 text-sm md:text-base">
+                
+                <!-- Member Details Card -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm space-y-3">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="flex items-center gap-2"><strong class="text-slate-900 w-28">সদস্যের নাম:</strong> <span id="modalName" class="text-slate-900 font-bold"></span></div>
+                        <div class="flex items-center gap-2"><strong class="text-slate-900 w-28">সদস্য আইডি:</strong> <span id="modalId" class="text-blue-700 font-mono font-bold bg-blue-50 px-2 py-0.5 rounded"></span></div>
+                        <div class="flex items-center gap-2"><strong class="text-slate-900 w-28">জেলা:</strong> <span id="modalDistrict" class="text-slate-800 font-semibold"></span></div>
+                        <div class="flex items-center gap-2"><strong class="text-slate-900 w-28">উপজেলা:</strong> <span id="modalUpazila" class="text-slate-800 font-semibold"></span></div>
+                        <div class="flex items-center gap-2 sm:col-span-2"><strong class="text-slate-900 w-28">সদস্যের অবস্থা:</strong> <span class="text-emerald-700 font-bold bg-emerald-50 px-3 py-1 rounded-full text-xs">সক্রিয় সদস্য</span></div>
+                    </div>
+                </div>
+
+                <!-- Official Certification Box -->
+                <div class="bg-blue-900 text-blue-50 p-5 rounded-2xl leading-relaxed shadow-md border border-blue-800 space-y-2 text-xs md:text-sm">
+                    <h4 class="font-extrabold text-amber-300 text-sm uppercase tracking-wide border-b border-blue-800 pb-1.5">অফিসিয়াল প্রত্যয়ন</h4>
+                    <p class="text-slate-200">উপরোক্ত তথ্য জনতার অনলাইন প্রেসক্লাবের সংরক্ষিত সদস্য তথ্যের ভিত্তিতে যাচাই করা হয়েছে। প্রদর্শিত তথ্য অনুযায়ী উক্ত ব্যক্তি জনতার অনলাইন প্রেসক্লাবের একজন সদস্য।</p>
+                    <p class="text-amber-200 font-medium pt-1"><strong>অনুরোধ:</strong> উক্ত সদস্যকে তাঁর পেশাগত কার্যক্রম পরিচালনার ক্ষেত্রে প্রয়োজন অনুযায়ী আইনানুগ ও প্রশাসনিক সহযোগিতা প্রদানের জন্য সংশ্লিষ্ট সকলের প্রতি অনুরোধ করা হলো।</p>
+                </div>
+
+                <!-- Parcel Notice Box -->
+                <div class="bg-amber-50 border-2 border-amber-300/80 rounded-2xl p-4 shadow-sm pulse-parcel flex items-start gap-3">
+                    <div class="text-2xl">📦</div>
+                    <div>
+                        <h4 class="font-extrabold text-amber-900 text-sm md:text-base mb-1">মূল্যবান পার্সেল গ্রহণ করুন</h4>
+                        <p class="text-slate-700 text-xs md:text-sm leading-relaxed">
+                            অনুগ্রহ করে আপনার মূল্যবান পার্সেলটি গ্রহণ করুন। আমাদের তথ্য অনুযায়ী পার্সেলটি এখনো গ্রহণ করা হয়নি। দয়া করে দ্রুত পার্সেলটি গ্রহণ করুন (টিশার্ট ও অন্যান্য সামগ্রী)।
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Final Greetings -->
+                <div class="bg-indigo-50 border border-indigo-100 p-3 rounded-2xl text-center">
+                    <p class="font-bold text-indigo-900 text-sm">অভিনন্দন!</p>
+                    <p class="text-xs text-slate-600">জনতার অনলাইন প্রেসক্লাবের পক্ষ থেকে শুভেচ্ছা ও অভিনন্দন।</p>
+                </div>
+
+                <!-- Timer & Redirect Button -->
+                <div class="space-y-3 text-center pt-1">
+                    <div class="text-xs text-amber-800 font-semibold bg-amber-50 p-3 rounded-xl border border-amber-200 flex items-center justify-center gap-2">
+                        <svg class="w-4 h-4 text-amber-600 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
+                        স্বয়ংক্রিয়ভাবে <span id="modalTimer" class="font-bold text-base text-amber-900">35</span> সেকেন্ড পর লগইন পেজে নিয়ে যাওয়া হচ্ছে...
+                    </div>
+
+                    <a href="https://janataronlinepressclub.com/login" 
+                       class="w-full bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 text-sm md:text-base">
+                        <span>লগইন করুন</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="bg-slate-900/80 backdrop-blur-md border-t border-slate-800 py-6 text-center text-xs md:text-sm text-slate-400 relative z-10">
         <div class="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
@@ -100,7 +173,7 @@
 
     <!-- Database & Script -->
     <script>
-        // Structured Member Database with unique IDs generated
+        // Structured Member Database
         const membersData = [
             { id: "JOPC-1001", name: "MD AL AMIN", district: "Bhola", upazila: "Charfassion", mobile: "01710018507" },
             { id: "JOPC-1002", name: "Amir Hamza", district: "Khagrachhari", upazila: "Panchhari", mobile: "01844806688" },
@@ -412,9 +485,24 @@
             { id: "JOPC-1308", name: "Md Nur Alam Jiku", district: "Bhola", upazila: "Charfassion", mobile: "01714901049" }
         ];
 
+        let modalInterval = null;
+
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel(); // Stop any previous speech
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'bn-BD'; // Bengali language
+                utterance.rate = 0.95; // Natural speaking speed
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
         function searchMember() {
             const query = document.getElementById('searchInput').value.trim().toLowerCase();
             const resultContainer = document.getElementById('resultContainer');
+            const popupModal = document.getElementById('popupModal');
+
+            if (modalInterval) clearInterval(modalInterval);
 
             if (!query) {
                 resultContainer.classList.remove('hidden');
@@ -425,7 +513,6 @@
                 return;
             }
 
-            // Search by Name, Mobile or ID
             const member = membersData.find(m => 
                 m.name.toLowerCase().includes(query) || 
                 m.mobile.toLowerCase().includes(query) || 
@@ -435,51 +522,34 @@
             resultContainer.classList.remove('hidden');
 
             if (member) {
-                resultContainer.innerHTML = `
-                    <div class="bg-gradient-to-br from-slate-50 to-blue-50/50 border border-slate-200/80 rounded-3xl p-6 md:p-8 shadow-xl animate-fade-in space-y-6">
-                        
-                        <!-- Success Banner -->
-                        <div class="bg-emerald-500 text-white p-4 rounded-2xl text-center shadow-md">
-                            <h3 class="text-lg md:text-xl font-black tracking-wide">অভিনন্দন!</h3>
-                            <p class="text-xs md:text-sm font-medium text-emerald-100 mt-0.5">উক্ত ব্যক্তি জনতার অনলাইন প্রেসক্লাবের একজন সদস্য।</p>
-                        </div>
+                // Populate Modal Data
+                document.getElementById('modalName').textContent = member.name;
+                document.getElementById('modalId').textContent = member.id;
+                document.getElementById('modalDistrict').textContent = member.district;
+                document.getElementById('modalUpazila').textContent = member.upazila;
 
-                        <!-- Member Details Card -->
-                        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-4">
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm md:text-base text-slate-700">
-                                <div class="flex items-center gap-2 border-b border-slate-100 pb-2"><strong class="text-slate-900 w-28">সদস্যের নাম:</strong> <span class="text-slate-900 font-bold">${member.name}</span></div>
-                                <div class="flex items-center gap-2 border-b border-slate-100 pb-2"><strong class="text-slate-900 w-28">সদস্য আইডি:</strong> <span class="text-blue-700 font-mono font-bold bg-blue-50 px-2 py-0.5 rounded">${member.id}</span></div>
-                                <div class="flex items-center gap-2 border-b border-slate-100 pb-2"><strong class="text-slate-900 w-28">জেলা:</strong> <span class="text-slate-800 font-semibold">${member.district}</span></div>
-                                <div class="flex items-center gap-2 border-b border-slate-100 pb-2"><strong class="text-slate-900 w-28">উপজেলা:</strong> <span class="text-slate-800 font-semibold">${member.upazila}</span></div>
-                                <div class="flex items-center gap-2"><strong class="text-slate-900 w-28">সদস্যের অবস্থা:</strong> <span class="text-emerald-700 font-bold bg-emerald-50 px-3 py-1 rounded-full text-xs">সক্রিয় সদস্য</span></div>
-                            </div>
-                        </div>
+                // Open Modal
+                popupModal.classList.remove('hidden');
 
-                        <!-- Official Certification Box -->
-                        <div class="bg-blue-900 text-blue-50 p-6 rounded-2xl text-sm md:text-base leading-relaxed shadow-md border border-blue-800 space-y-3">
-                            <h4 class="font-extrabold text-amber-300 text-base uppercase tracking-wide border-b border-blue-800 pb-2">অফিসিয়াল প্রত্যয়ন</h4>
-                            <p class="text-slate-200">উপরোক্ত তথ্য জনতার অনলাইন প্রেসক্লাবের সংরক্ষিত সদস্য তথ্যের ভিত্তিতে যাচাই করা হয়েছে। প্রদর্শিত তথ্য অনুযায়ী উক্ত ব্যক্তি জনতার অনলাইন প্রেসক্লাবের একজন সদস্য।</p>
-                            <p class="text-amber-200 font-medium pt-2"><strong>অনুরোধ:</strong> উক্ত সদস্যকে তাঁর পেশাগত কার্যক্রম পরিচালনার ক্ষেত্রে প্রয়োজন অনুযায়ী আইনানুগ ও প্রশাসনিক সহযোগিতা প্রদানের জন্য সংশ্লিষ্ট সকলের প্রতি অনুরোধ করা হলো।</p>
-                        </div>
+                // Text to speech announcement in Bengali
+                const speechString = `অভিনন্দন! উক্ত ব্যক্তি জনতার অনলাইন প্রেসক্লাবের একজন সদস্য। নাম ${member.name}, জেলা ${member.district}, উপজেলা ${member.upazila}, সদস্য আইডি ${member.id}। অনুগ্রহ করে আপনার মূল্যবান পার্সেলটি দ্রুত গ্রহণ করুন।`;
+                speakText(speechString);
 
-                        <!-- Parcel Notice Box -->
-                        <div class="bg-amber-50 border-2 border-amber-300/80 rounded-2xl p-5 shadow-sm pulse-parcel flex items-start gap-4">
-                            <div class="text-3xl">📦</div>
-                            <div>
-                                <h4 class="font-extrabold text-amber-900 text-base md:text-lg mb-1">মূল্যবান পার্সেল গ্রহণ করুন</h4>
-                                <p class="text-slate-700 text-sm leading-relaxed">
-                                    অনুগ্রহ করে আপনার মূল্যবান পার্সেলটি গ্রহণ করুন। আমাদের তথ্য অনুযায়ী পার্সেলটি এখনো গ্রহণ করা হয়নি। দয়া করে দ্রুত পার্সেলটি গ্রহণ করুন (টিশার্ট ও অন্যান্য সামগ্রী)।
-                                </p>
-                            </div>
-                        </div>
+                // 35 seconds countdown timer
+                let timeLeft = 35;
+                modalInterval = setInterval(() => {
+                    timeLeft--;
+                    const modalTimer = document.getElementById('modalTimer');
+                    if (modalTimer) {
+                        modalTimer.textContent = timeLeft;
+                    }
+                    if (timeLeft <= 0) {
+                        clearInterval(modalInterval);
+                        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+                        window.location.href = "https://janataronlinepressclub.com/login";
+                    }
+                }, 1000);
 
-                        <!-- Final Greetings -->
-                        <div class="bg-indigo-900/10 border border-indigo-200 p-4 rounded-2xl text-center">
-                            <p class="font-bold text-indigo-900">অভিনন্দন!</p>
-                            <p class="text-xs text-slate-600 mt-1">জনতার অনলাইন প্রেসক্লাবের পক্ষ থেকে শুভেচ্ছা ও অভিনন্দন।</p>
-                        </div>
-                    </div>
-                `;
             } else {
                 resultContainer.innerHTML = `
                     <div class="p-8 bg-amber-50 border border-amber-200 text-amber-900 rounded-3xl text-center animate-fade-in shadow-sm space-y-2">
